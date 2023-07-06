@@ -1,0 +1,38 @@
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    padding: 1rem;
+    transition: all 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.02);
+    background-color: #33ff00aa; /* semi-transparent green */
+  }
+
+
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Feel free to adjust this */
+    gap: 2rem; /* The gap between the cards, adjust as needed */
+    text-decoration: none;
+    color: white; 
+    margin: 0 2rem; 
+    align-items: center;
+    min-height: 80vh;
+    align-content: center;
+  }
+
+  .poemLink {
+    text-decoration: none;
+    color: inherit;
+  }
+    
+  .card img {
+    display: block;
+    margin: 0 auto; /* To center the image */
+  }
