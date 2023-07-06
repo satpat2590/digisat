@@ -1,0 +1,10 @@
+.tree {
+  margin-right: 2rem;
+  animation: animate 4s infinite ease alternate;
+}
+
+@keyframes animate {
+  100% {
+    transform: translateY(10px);
+  }
+}
