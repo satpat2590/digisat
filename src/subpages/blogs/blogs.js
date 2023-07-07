@@ -3,7 +3,7 @@ export const blogs = [
         title: "Quest for Motivation",
         date: "July 7th, 2023",
         description: "How do you find that initial spark? What drives you to excel in a particular field?",
-        img: '/blog1.png',
+        img: '/blog-icons/motivation.jpg',
         path: '/blogs/0'
     },
     {
