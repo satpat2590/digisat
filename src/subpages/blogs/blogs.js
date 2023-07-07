@@ -10,14 +10,14 @@ export const blogs = [
         title: "Journey into Docker Compose",
         date: "July 8th, 2023",
         description: "Tired of versioning issues between your team? Here's a little non-violent foray into the world of orchestrating containers!",
-        img: '/blog2.png',
+        img: '/blog-icons/docker.png',
         path: '/blogs/1'
     },
     {
         title: "Ancient History + Theories",
         date: "July 10th, 2023",
         description: "What is the true history behind humans? This information will be hard to uncover, but it doesn't hurt to speculate!",
-        img: '/blog3.png',
+        img: '/blog-icons/history.png',
         path: '/blogs/2'
     },
     {
