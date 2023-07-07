@@ -1,8 +1,19 @@
 import { h } from 'preact';
 import { Link } from 'preact-router';
 import { blogs } from './blogs/blogs.js';  // import your array of blogs
+import { useEffect }from 'preact/hooks';
 
 export function Blogs() {
+    useEffect(() => {
+        // Set the overflow to 'auto' when the component mounts
+        document.body.style.overflowY = 'auto';
+    
+        // Set it back to 'hidden' when the component unmounts
+        return () => {
+          document.body.style.overflowY = 'hidden';
+        };
+    }, []);  // Empty dependency array so this runs only on mount and unmount
+
   return (
     <div>
       {blogs.map((blog, index) => (

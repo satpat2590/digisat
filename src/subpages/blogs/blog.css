@@ -1,0 +1,24 @@
+.blog {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 2em auto;
+    max-width: 900px;
+    line-height: 1.6;
+    color: #33ff00;
+}
+
+.blog-title {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    color: #FFFFFF;
+}
+
+.blog-date {
+    font-size: 1.2em;
+    color: #777;
+    margin-bottom: 1em;
+}
+
+.blog-content {
+    text-align: justify;
+    word-wrap: break-word;
+}

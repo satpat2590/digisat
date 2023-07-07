@@ -1,33 +1,12 @@
-// import { h } from 'preact';
-// import { useRoute } from 'preact-router';  // import the useParams hook
-// import { blogs } from './blogs';  // import your array of blogs
-
-// export default function Blog({ id }) {
-//   const blog = blogs.find((blog) => blog.path === `/blogs/${id}`);
-
-//   // display a loading message while the blog is being fetched
-//   if (!blog) return <div>Loading...</div>;
-
-//   return (
-    // <div>
-    //   <h2>{blog.title}</h2>
-    //   <p>{blog.date}</p>
-    //   <img src={blog.img} alt={blog.title} />
-    //   <p>{blog.description}</p>
-    // </div>
-//   );
-// }
-
 import { h, Component } from 'preact';
 import { blogs } from './blogs.js';;
 import { useEffect } from 'preact/hooks';
+import { BlogComponents } from './blog-components.jsx';
 
 export class Blog extends Component {
     render({ id }) {
         const blog = blogs.find((blog) => blog.path === `/blogs/${id}`);
-        // const formattedId = id.charAt(0).toUpperCase() + id.slice(1);
-        // const PoemComponent = PoemComponents[formattedId];
-        
+        const BlogComponent = BlogComponents[id];        
         useEffect(() => {
             // Set the overflow to 'auto' when the component mounts
             document.body.style.overflowY = 'auto';
@@ -38,12 +17,11 @@ export class Blog extends Component {
             };
           }, []);  // Empty dependency array so this runs only on mount and unmount
 
+        
+
         return (
             <div>
-                <h2>{blog.title}</h2>
-                    <p>{blog.date}</p>
-                    <img src={blog.img} alt={blog.title} />
-                <p>{blog.description}</p>
+                {blog ? <BlogComponent /> : <p style={{textAlign: 'none', fontSize: '40px'}}>No blog post here yet!</p>}
             </div>
         );
     }
