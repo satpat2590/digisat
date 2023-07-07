@@ -42,19 +42,19 @@ export function Header() {
             }}
           >
             <a
-              href="./blogs.jsx"
+              href="/blogs"
               style={{ textDecoration: 'none', color: 'white', margin: '1rem' }}
             >
               Blogs
             </a>
             <a
-              href="./poetry.jsx"
+              href="/poems"
               style={{ textDecoration: 'none', color: 'white', margin: '1rem' }}
             >
               Poetry
             </a>
             <a
-              href="./pictures.jsx"
+              href="/pictures"
               style={{ textDecoration: 'none', color: 'white', margin: '1rem' }}
             >
               Pictures
