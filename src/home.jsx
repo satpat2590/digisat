@@ -62,7 +62,7 @@ export function Home() {
             height: '40%',
           }}
         >
-          {['Blog', 'Poetry', 'Pictures'].map((name) => (
+          {['Blog', 'Poems', 'Pictures'].map((name) => (
             <a
               href={`${name.toLowerCase()}`}
               style={{ textDecoration: 'none', color: '#33ff00' }}

@@ -1,8 +1,8 @@
 body {
   margin: 0;
   background-color: black;
-  overflow-x: hidden; /* Disables horizontal scrolling */
-  overflow-y: hidden; /* Disables vertical scrolling */
+  overflow-x: hidden; 
+  overflow-y: hidden; 
   font-family: 'Courier New', Monaco, monospace;
   color: #33ff00;
 }

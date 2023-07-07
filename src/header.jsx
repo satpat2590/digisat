@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
+import { Link } from 'preact-router';
 
 export function Header() {
   const [header, setHeader] = useState(false);
@@ -13,13 +14,20 @@ export function Header() {
           justifyContent: 'space-between',
         }}
       >
+      <Link href="/" style={{textDecoration: 'none'}}>
         <p
           style={{
             marginLeft: '0.5rem',
+            fontFamily: 'Mrs Saint Delafield',
+            fontSize: '30px',
+            margin: '0.5rem 0.8rem',
+            marginBottom: '0',
+            color: '#FFFFFF'
           }}
         >
           Satyam Patel
         </p>
+        </Link>
         <nav>
           <div
             style={{
