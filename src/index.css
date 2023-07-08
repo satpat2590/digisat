@@ -2,15 +2,29 @@ body {
   margin: 0;
   background-color: black;
   overflow-x: hidden; 
-  overflow-y: hidden; 
+  /* overflow-y: hidden;  */
   font-family: 'Courier New', Monaco, monospace;
   color: #33ff00;
+}
+
+html, body, .root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  /* overflow: hidden; */
+}
+
+html {
+  height: 100%;
+  overflow: auto;
 }
 
 /* On screens smaller than 600px, enable scrolling */
 @media (max-width: 600px) {
   body {
-    overflow-y: auto;
+    /* overflow-y: auto; */
     overflow-x: hidden;
   }
 }

@@ -1,8 +1,9 @@
-   .header {
+.header {
     background: black;
     display: flex;
     color: white;
     justify-content: space-between;
+    overflow: hidden;
   }
   
   .header-link {
@@ -17,16 +18,19 @@
     margin-bottom: 0;
     color: #FFFFFF;
   }
-  
+
   .nav-container {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     top: 55px;
     background: black;
     color: white;
     transition: transform 0.6s ease-in-out;
+    overflow: hidden;
+    z-index: 9999; /* Or some other high value */
   }
+  
   
   .nav-link {
     text-decoration: none;

@@ -1,11 +1,21 @@
 import { h } from 'preact';
-import { useState } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
 import './poetry.css';
 import { poems } from './poems/poems'; 
 import { Link } from 'preact-router/match'; 
 
 
 export function Poetry() {
+
+    useEffect(() => {
+        // Set the overflow to 'auto' when the component mounts
+        document.body.style.overflowX = 'hidden';
+    
+        // Set it back to 'hidden' when the component unmounts
+        return () => {
+          document.body.style.overflowX = 'hidden';
+        };
+      }, []);  // Empty dependency array so this runs only on mount and unmount
     return (
         <>
         <div className="container">

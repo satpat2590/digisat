@@ -1,3 +1,15 @@
+/* .poem {
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.poemtext {
+    color: #33ff00;
+}
+ */
+
+/* Poem CSS */
+
 .poem {
     text-align: center;
     color: #FFFFFF;
@@ -6,3 +18,12 @@
 .poemtext {
     color: #33ff00;
 }
+
+/* Adjust font size for smaller screens */
+@media (max-width: 600px) {
+  .poemtext {
+    font-size: 14px;
+    margin: 0 3rem;
+  }
+}
+

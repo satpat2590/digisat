@@ -83,7 +83,7 @@
   .home-links {
     grid-template-columns: repeat(3, 1fr);
     font-size: 0.9em;
-    margin: 0 2rem;
+    margin: 2rem 2rem;
   }
 }
 
@@ -115,7 +115,7 @@
 /* For screens smaller than 600px */
 @media (max-width: 600px) {
   .home-description p {
-    font-size: 0.65em;
+    font-size: 0.7em;
   }
 
   .home-description .tree {
@@ -129,7 +129,8 @@
   }
 
   .home-images {
-    max-width: 200px; 
-    max-height: 200px; 
+    max-width: 100px; 
+    max-height: 150px; 
+    margin-top: 2rem;
   }
 }

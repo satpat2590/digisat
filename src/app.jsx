@@ -7,6 +7,7 @@ import { Poetry } from './subpages/poetry.jsx'; // assuming your poetry componen
 import { Poem } from './subpages/poems/poem.jsx'; // import your new Poem component
 import { Blogs } from './subpages/blogs.jsx';
 import { Blog } from './subpages/blogs/blog.jsx';
+import { Pictures } from './subpages/pictures.jsx';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Poem path="/poems/:id" />
         <Blogs path="/blogs" />
         <Blog path="/blogs/:id" />
+        <Pictures path="/pictures" />
       </Router>
     </>
 

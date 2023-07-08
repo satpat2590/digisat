@@ -5,6 +5,7 @@ import { blogs } from '../blogs.js';
 export default function Blog1() {
     
     return (
+        <div className="page">
         <div className="blog">
             <h1 className="blog-title">{blogs[0].title}</h1>
             <div className="blog-date">Posted on {blogs[0].date}</div>
@@ -68,6 +69,7 @@ export default function Blog1() {
                     to understand more and could devote micro-goals to understand it? 
                 </p>
             </div>
+        </div>
         </div>
     );
 }

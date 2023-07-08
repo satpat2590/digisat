@@ -10,15 +10,15 @@ export class Poem extends Component {
         const formattedId = id.charAt(0).toUpperCase() + id.slice(1);
         const PoemComponent = PoemComponents[formattedId];
         
-        useEffect(() => {
-            // Set the overflow to 'auto' when the component mounts
-            document.body.style.overflowY = 'auto';
+        // useEffect(() => {
+        //     // Set the overflow to 'auto' when the component mounts
+        //     document.body.style.overflowY = 'auto';
         
-            // Set it back to 'hidden' when the component unmounts
-            return () => {
-              document.body.style.overflowY = 'hidden';
-            };
-          }, []);  // Empty dependency array so this runs only on mount and unmount
+        //     // Set it back to 'hidden' when the component unmounts
+        //     return () => {
+        //       document.body.style.overflowY = 'hidden';
+        //     };
+        //   }, []);  // Empty dependency array so this runs only on mount and unmount
 
         return (
             <div>
