@@ -13,9 +13,10 @@
     background-color: #33ff00aa; /* semi-transparent green */
   }
 
-  .card:active {
-    box-shadow: 0 0 10px #33ff00; /* adjust as needed */
-  }
+  /* .card:active { */
+    /* box-shadow: 0 0 10px #33ff00; adjust as needed */
+  /* } */
+
 
   .grid {
     display: grid;
@@ -26,8 +27,9 @@
     margin: 0 2rem; 
     align-items: center;
     position: relative; 
-    top: 6em;
+    top: 3em;
     align-content: center;
+    place-content: center;
   }
 
   .poemLink {

@@ -24,7 +24,8 @@ export function Blogs() {
             onMouseEnter={e => e.currentTarget.style.backgroundColor = '#32CD32'}
             onMouseLeave={e => e.currentTarget.style.backgroundColor = '#202020'}
             onTouchStart={e => e.currentTarget.style.backgroundColor = '#32CD32'}
-            onTouchEnd={e => e.currentTarget.style.backgroundColor = '#202020'}>
+            onTouchEnd={e => e.currentTarget.style.backgroundColor = '#202020'}
+            >
             <img src={blog.img} alt={blog.title} className="blog-img" />
             <div className="blog-info">
               <h2 className="blog-title">{blog.title}</h2>

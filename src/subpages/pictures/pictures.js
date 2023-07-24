@@ -1,30 +1,34 @@
 export const pictures = [
     {
-        url: '/photoalbum/pic1',
-        description: 'Picture of [REDACTED]'
+        url: '/photoalbum/florence.jpg',
+        description: 'cathedral in florence'
     },
     {
-        url: '/photoalbum/pic2',
-        description: 'Picture of [REDACTED]'
+        url: '/photoalbum/piza.jpg',
+        description: 'the leaning tower of piza'
     },
     {
-        url: '/photoalbum/pic3',
-        description: 'Picture of [REDACTED]'
+        url: '/photoalbum/venice.jpg',
+        description: 'canals of venice'
     },
     {
-        url: '/photoalbum/pic4',
-        description: 'Picture of [REDACTED]'
+        url: '/photoalbum/ifach.jpg',
+        description: 'lookout from top of ifach mountain'
     },
     {
-        url: '/photoalbum/pic5',
-        description: 'Picture of [REDACTED]'
+        url: '/photoalbum/sevilla.jpg',
+        description: 'modern plaza in sevilla'
     },
     {
-        url: '/photoalbum/pic6',
-        description: 'Picture of [REDACTED]'
+        url: '/photoalbum/ifachtop.jpg',
+        description: 'all the way on top of ifach mountain'
     },
     {
-        url: '/photoalbum/pic7',
-        description: 'Picture of [REDACTED]'
-    }
+        url: '/photoalbum/sunflower.jpg',
+        description: 'sunflower field in south spain'
+    },
+    {
+        url: '/photoalbum/eiffel.jpg',
+        description: 'selfie of me and the eiffel tower'
+    },
 ];

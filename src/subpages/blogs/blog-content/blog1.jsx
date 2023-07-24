@@ -1,9 +1,10 @@
 import { h } from 'preact';
 import '../blog.css';
 import { blogs } from '../blogs.js';
+import { Code, CodeBlock, obsidian ,nord, a11yDark, atomOneDark, dracula } from 'react-code-blocks';
+import { myCustomTheme } from '../../codeblocks';
 
 export default function Blog1() {
-    
     return (
         <div className="page">
         <div className="blog">
@@ -23,12 +24,12 @@ export default function Blog1() {
                 <p>I honestly think the advent of technology and communication in the forms such as internet-connected gaming consoles and social media 
                     have given kids a dearth of personal inspiration. I'm not saying that kids need to be stuck in boredom and tinker with gadgets in 
                     order to find some sort of passion. That would be a boring childhood and that, mixed with the monotony of adult life, would lead you to 
-                    probably not find an interest in anything. So how do people find that motivation, is it only found in your youth? 
+                    probably not find an interest in anything. So how do people find that motivation? Is it only found in your youth? 
                 </p>
                 <p>Yes, and no. I think being a kid is important because you don't have that intense influx of information that you get when you're older. 
-                    For example, looking at news about climate change, wars, political ideologies, technological advancements are all things that you 
-                    are accustomed to as an adult but not as kids (unless you lost your innocence early). So if you don't find that motivation or passion 
-                    in your life early on, then it'll become increasingly harder to find something that truly resonates with you.   
+                    For example, news about climate change, wars, political ideologies, and technological advancements are all things that you 
+                    are accustomed to seeing on the news as an adult but not as kids (unless you lost your innocence early). So if you don't find that motivation or passion 
+                    in your life early on, then it'll become increasingly harder to find something that truly resonates with you (in this modern era).   
                 </p>
                 <p>I'll give a personal anecdote about my own passions: When I was a kid, I loved playing computer games a LOT. Everything from downloading 
                     suspicious files for a lesser-known MMORPG to playing browser games, it was all straight enjoyment and passion. So, naturally, as I aged 
@@ -50,7 +51,7 @@ export default function Blog1() {
                     and having this drive to <i><b>figure</b></i> something out. If I had a passion to understand computers as a kid, then today I would 
                     still have motivation to do the same, since the cyber-world is rapidly growing each month. Instead, I sought enjoyment from the activities offered 
                     from computers, and that led me to find temporary motivation, which was snuffed out once I <i>understood</i> how things worked. Now, I sit and 
-                    critique video games if they have boring mechanics or if they don't have ray tracing enabled for optimal immersion. 
+                    critique video games if they have boring mechanics or if they don't have ray tracing enabled for optimal visual immersion. 
                 </p>
                 <p>To find motivation is to say: "Hey I want to better myself, let's start by illuminating this darkness called ignorance". Only when you understand 
                     that you know <i>nothing</i> and keep striving to learn more is when you have found motivation. Currently, I have motivation to learn all about 
@@ -59,7 +60,7 @@ export default function Blog1() {
                 </p>
                 <p>A word of advice I'll give: don't get drawn into recreation as a means of optimal enjoyment. If you do, there will be no motivation to 
                     do any other task to further your life, and you'll be stuck being motivated by those things growing up as well. For example, you'll do everything in 
-                    your life with minimal motivation in order to sit and lounge around (which becomes your motivation, funnily enough). Having these interests develop 
+                    your life with minimal motivation in order to sit and lounge around (which becomes your motivation, funny enough). Having these interests develop 
                     throughout your life also gives you a means of communication with the people around you. My love for history can be shared with the people I talk to, 
                     which in turn provides a deeper understanding internally. 
                 </p>
@@ -68,6 +69,13 @@ export default function Blog1() {
                     mode of thought to every field led him to develop the idea of logic. So what is your motivation? If you don't have one, what is something you want 
                     to understand more and could devote micro-goals to understand it? 
                 </p>
+
+                <CodeBlock
+                    text='console.log("Hello world!");'
+                    language='javascript'
+                    showLineNumbers={true}
+                    theme={myCustomTheme}
+                />
             </div>
         </div>
         </div>

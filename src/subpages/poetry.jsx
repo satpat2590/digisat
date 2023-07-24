@@ -4,7 +4,6 @@ import './poetry.css';
 import { poems } from './poems/poems'; 
 import { Link } from 'preact-router/match'; 
 
-
 export function Poetry() {
 
     useEffect(() => {
@@ -22,10 +21,13 @@ export function Poetry() {
             <div className="grid">
                 {poems.map((poem) => (
                     <Link className="poemLink" href={poem.path}>
-                        <div className="card" key={poem.path}>
-                            <h2>{poem.title}</h2>
-                            <p>{poem.desc}</p>
-                            <img src={poem.img} alt={poem.title} width="50" height="50" />
+                        <div className="card" 
+                            onTouchStart={e => e.currentTarget.style.backgroundColor = '#32CD32'} 
+                            onTouchEnd={e => e.currentTarget.style.backgroundColor = '#000000'}
+                            key={poem.path}>
+                                <h2>{poem.title}</h2>
+                                <p>{poem.desc}</p>
+                                <img src={poem.img} alt={poem.title} width="50" height="50" />
                         </div>
                     </Link>
                 ))}

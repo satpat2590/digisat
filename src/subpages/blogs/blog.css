@@ -64,6 +64,15 @@
     align-items: center;
 }
 
+.link {
+  text-decoration: 'none';
+  color: "white"
+}
+
+.codeblock { 
+  font-size: 15px;
+}
+
 /* Adjust font sizes, margins and max-width for smaller screens */
 @media (max-width: 600px) {
   .blog {
@@ -81,5 +90,14 @@
 
   .blog-content {
     font-size: 14px;
+  }
+  
+  .codeblock {
+    font-size: 13px;
+  }
+
+  .image { 
+    height: 300px;
+    width: 400px
   }
 }

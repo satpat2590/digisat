@@ -4,6 +4,8 @@
     color: white;
     justify-content: space-between;
     overflow: hidden;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
   }
   
   .header-link {
