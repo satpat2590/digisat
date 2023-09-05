@@ -7,6 +7,10 @@ export default defineConfig({
     open: true,
     port: 6969, 
   },
+  esbuild: {
+    jsxFactory: 'h',
+    jsxFragment: 'Fragment',
+  },
   plugins: [preact()],
   root: './',
   base: './',

@@ -153,34 +153,6 @@ db:
                 <h1 className="blog-title">{blogs[1].title}</h1>
                 <div className="blog-date">Posted on {blogs[1].date}</div>
                 <div className="blog-content">
-                    {/* <p>Have you ever sat on your computer and tried to code something with a group, and found out that the code 
-                        isn't working on each other's computers? Try as you might, the bash scripts your friend writes won't run on 
-                        your MacOS since he's running Ubuntu, and your other friend gave up long ago since he's running Windows. 
-                    </p>
-                    <p>Trust me, this problem is common and something that I've struggled with in my college days as well! Luckily, with 
-                        the advent of modern computing applications, there is a simple solution to this problem. We rely on something called <i><b>virtualization</b></i>
-                        to fix our issues! What is virtualization? Simply put, it's a way for your computer to run another application (or another OS) on top of your OS. 
-                        So, if your friend writes a bash script in his Ubuntu Server OS, then you'll also be able to run that script since you can deploy 
-                        a virtual environment which allows you to use Ubuntu Server OS as well. Now that you have the same OS running on yours and your 
-                        friend's computers, you can easily run this script and run the application you've spent a great deal of time working on. 
-                    </p>
-                    <p>I never mentioned the tool in which we used to make this virtualization happen. It's called Docker, and it's a simple way to run 
-                        an <i><b>image</b></i> of an application or OS straight onto your computer. Typical virtual machines usually are resource-intensive, 
-                        meaning they share the resources of your hardware along with your base OS. People typically use VMs (virtual machines) on their Windows OS 
-                        to simulate a Linux environment, allowing them to have more flexibility in running their applications while also giving them greater 
-                        control over their illusory OS. Docker is different because it has pre-saved environments called 'images', which contain either the 
-                        application you want to run or the base OS itself. To run an image, you simply go on Docker and then run the image you want, 
-                        which allows you to create a <i><b>container</b></i>, which is a running virtual environment based on the image you want. 
-                    </p>
-                    <p>For example, in my earlier example in the project with friends, my Windows buddy and I would simply find an image on Docker which runs 
-                        an Ubuntu base OS, and then deploy that as a container to use. You may think this probably takes a long time, since if you remember the time 
-                        you got your first PC/Laptop and downloaded an OS, it may have taken a long time to sit and let it load up. Fortunately, Docker containers 
-                        are SUPER lightweight, meaning they can usually be spun up as a container in seconds or even less! This is because Docker utilizes the same 
-                        <i><b>kernel</b></i> as your host OS (with my MacOS being a spin-off of the Unix kernel, same as Ubuntu/Linux). Since there isn't another 
-                        virtual kernel being run on your machine, as is with typical virtual machines, Docker is allowed to share resources from the host OS, thus 
-                        allowing for a more lightweight virtualization process. Hopefully this makes sense! If not, no worries, the land of virtualization is a complex 
-                        concept to grasp! 
-                    </p> */}
                     <h2>Intro to Docker</h2>
                     <p>Have you ever tried to code collaboratively, only to discover the code doesn't work universally across your team's different computers? 
                         Bash scripts penned on Ubuntu won't run on MacOS, and Windows users might give up out of frustration. This challenge is prevalent and 
@@ -260,33 +232,6 @@ db:
                         theme={myCustomTheme}
                     />
                     </div>
-                    {/* <p>If you have a cow printed out with a nice pun, congratulations! You've successfully ran a Docker container by first pulling an image 
-                        from the Docker Hub! With these newfound skills, you're ready to go ahead and pull some more interesting images from the hub and test them 
-                        out as you will! Some very interesting ones are <a href="https://hub.docker.com/_/node" style = {{
-                        textDecoration: 'none', color: "white"
-                    }}>node.js</a> and <a href="https://hub.docker.com/_/mysql" style = {{
-                        textDecoration: 'none', color: "white"
-                    }}>MySQL</a>. The node image would run a fully configured instance of node.js (JavaScript environment) and npm (node package manager). With this image, 
-                        you'll be able to create very intriguing web-projects, one of which is also this website you're on! On the other hand, the MySQL image would run 
-                        the latest version (or whichever you specify when pulling) of MySQL, which is a relational database which you can configure locally or through the 
-                        cloud. For our next step in the journey to Docker Compose, we'll actually be running a Docker Compose! 
-                    </p>
-                    <p>Docker Compose is very special because it allows multiple containers to <i>interlink</i>, or run simultaneously within the same network. You can 
-                        specify ports on the host which would be linked to ports on the container itself. So, you can map the host 
-                        (your personal computer) port to a port on the container, allowing you to access the container's information on your host machine. 
-                        An example would be running a web application using Node on the container. Normally, the default port you would use in an application like that 
-                        is 3000. You would be able to access the web application by going on your browser and typing in 'localhost:3000', which would be accessing the 
-                        host:port. Normal websites like www.facebook.com are also in a similar format, but they're run on a separate hosted server which Facebook probably 
-                        maintains internally. If Facebook employees wanted to make adjustments to the website, they would run a <i><b>development server</b></i>, which would 
-                        allow for tests to be run on something like 'localhost:3000' (or whatever port you specify).  
-                    </p>
-                    <p>We won't be getting into the details about porting right now, but it would be helpful to delve deeper into that topic when you configure this project. 
-                        Let's continue onward in our journey now! In a new directory on your computer, create a folder called <i>compose_example</i>. Within that folder, 
-                        create two more folders called <i>web</i> and <i>db</i>. You'll now be creating a docker-compose environment that is able to run the two images 
-                        I mentioned previously, node.js and MySQL. In the base directory, /compose_example/, create a file called <i>docker-compose.yml</i>. This will be 
-                        a <i><b>configuration file</b></i> to orchestrate your containers. In that file (/compose_example/docker-compose.yml), copy and pastethe following into it:
-                    </p> */}
-
                     <p>If you've been greeted by a cow spouting a pun, congratulations! You've successfully run a Docker container by pulling an image from the Docker Hub. 
                         With this skill, you're now equipped to explore more intriguing images from the hub. Some captivating examples include the <a href="https://hub.docker.com/_/node" style = {{
                         textDecoration: 'none', color: "white"
@@ -317,36 +262,6 @@ db:
                             theme={myCustomTheme}
                         />
                     </div>
-                    {/* <p>Let's go ahead and break this daunting configuration file down! To start with the easiest piece of this puzzle, let's talk about the 'version' tag. 
-                        This refers to the versions of the compose file itself, which is maintained by Docker. You can find a breakdown of the versioning <a href="https://docs.docker.com/compose/compose-file/compose-versioning/" style = {{
-                        textDecoration: 'none', color: "white"
-                    }}>here</a>. 
-                    </p>
-                    <p>In this journey we shall continue forward! Next up is services, which are another fancy way of saying 'containers'. Each service is defined as an image 
-                        that has some additional personal specifications coded into it. Or, you can simply have a base image running as a service. Our two services here are: <i>web</i> and <i>db</i>. 
-                        The web service is running our node image, whilst the db service runs the MySQL image. 
-                    </p>
-                    <p>Our web service is going to be pulling information stored within the MySQL relational database, so it wouldn't make sense for the 'web' service to run 
-                        standalone. Therefore, we place the <i><b>depends_on</b></i> tag in the service specification, which basically asks: "<i>What does this service rely on 
-                        in order to function properly?</i>". In other terms, you wouldn't achieve much if you started and ran the web service without first running the 
-                        db service. How else would you be able to pull information from that database if it isn't running yet? The depends_on tag does just that. It runs the 
-                        service (db) which web relies on first, before starting the web service. 
-                    </p>
-                    <p>The next step is very important, because it allows you to custom configure an image to fit your needs. The <i><b>build</b></i> tag asks you this question: 
-                        "Do you have a custom configuration file for this service to be run as a container? If so, please provide the location of that file". The configuration 
-                        file in question is called a <a href="https://docs.docker.com/engine/reference/builder/" style = {{
-                        textDecoration: 'none', color: "white"
-                    }}>Dockerfile</a>, and this file is <b>VERY</b> powerful. Let's say you have a node image that you want to pull and run. This image isn't configured in the slightest,
-                        and to make big changes to this image, you'd have to run the base image each time and then make your changes. There's really no way to save your changes... 
-                        With a Dockerfile, however, you can create a new image from a template such as the base node image, and adopt your own changes to it. One popular usage of this 
-                        Dockerfile is to download certain packages into the image you're creating, such as the <a href="https://www.npmjs.com/package/mysql2" style = {{
-                        textDecoration: 'none', color: "white"
-                    }}>mysql</a> package for node. This allows you access to the mysql node package when you run the container from the image created from the Dockerfile. 
-                        Think about it... Isn't it better to have packages like that built in to the image rather than having to boot up the base image and downloading the 
-                        packages each time? It saves a lot of time pre-configuring these images so you can easily deploy and drop these containers with less of a headache. 
-                        The next section will talk about how to set up the /compose_example/web folder! Prepare yourselves :)
-                    </p> */}
-
                     <p>Let's demystify this seemingly complex configuration file! Starting with the most straightforward element, the 'version' tag signifies the version of the compose file maintained by Docker. 
                         You can find an overview of the versioning <a href="https://docs.docker.com/compose/compose-file/compose-versioning/" style = {{
                         textDecoration: 'none', color: "white"
@@ -489,38 +404,6 @@ db:
                             theme={myCustomTheme}
                         />
                     </div>
-                    {/* <p>Then it will print out the value of that environment variable! You can even use environment variables within programming language files, such as JavaScript, 
-                        Python, C, etc... In the context of this docker-compose.yml file, it will be an environment variable which is accessible within the 'web' container (service)
-                        only! I used the environment variable <i><b>SATYA</b></i> and set the value to 'satyapatya'. This isn't important, just an example, but normally you'd use 
-                        the environment variables to set login information for your database connection or anything else. You also have to be mindful of security concerns! Publicly 
-                        placing login information within a docker-compose.yml file could be dangerous if you're sharing the file publically. 
-                    </p>
-                    <p>I said before that docker containers within a docker-compose environment communicate via similar networks. In order for our 'web' service to connect to the 
-                        'db' host's database, you'd need the same network for connection purposes. Our <i><b>networks</b></i> tag does just that. On line 24 of the docker.compose.yml 
-                        file posted above, you'll notice a <i><b>networks</b></i> tag outside of the scope of the <i><b>services</b></i> tag. This will define the networks you want 
-                        to use, and ours is conveniently called <i>nodeapp</i>. You can set a lot of various configuration options for the networks, but that is outside the scope 
-                        of this tutorial. <a href="https://docs.docker.com/compose/compose-file/06-networks/" style = {{
-                        textDecoration: 'none', color: "white"
-                    }}>Here's</a> a reference if you'd like to learn more. 
-                    </p>
-                    <p>We're officially done dissecting the 'web' service portion, hurray! The 'db' service is relatively similar, with some small differences... 
-                        The <i><b>volumes</b></i> tag is important in creating file links between the host and the container. For example, when you're finished using the 
-                        'db' container and you stop it, does the database get persisted? What if all of the information you stored during your work session gets lost? 
-                        You'd probably have a little murder on your mind! To regulate your stress levels, docker-compose allows you to create <i>volumes</i>, which 
-                        are persisted stores of memory, so that you can add a row each time you start a container and all of the previous data will be saved! How 
-                        freakin' convenient! 
-                    </p>
-                    <p>The <i>db_data</i> volume is where the MySQL database is persisted, and you'll also find the volume declared on the bottom of the docker-compose.yml file, 
-                        same as with the networks. Additionally, you can attach a file that you have on your host OS to a file on the container, so that whenever you write to 
-                        that file within the container, it'll get persisted on the host file. In this case, <i>~/dockerexample</i> is a file in the home directory (~/) which will 
-                        receive all of the information that gets stored within the <i>/var/lib/mysql-files/</i> folder in the container. A typical use of this is to convert the entire 
-                        database within the 'db' container as a CSV file, which will allow you to use that in your host OS.   
-                    </p>
-                    <p>The <i><b>restart</b></i> tag is important for anything database related, just for connectivity issues. You can search that up online, in which there isn't 
-                        a community answer per-say, but it's an important thing to keep in whenever working with database images in a docker-compose context. With this, we simply 
-                        need to create the Dockerfile within the <i>/compose_example/db/</i> folder and we'll be done! Fortunately, this Dockerfile is quite literally only one line!
-                        Here it is: 
-                    </p> */}
                     <p>Then it will print out the value of that environment variable! Environment variables provide a convenient way to customize your application's runtime behavior. 
                         For instance, you can use environment variables within programming languages like JavaScript, Python, C, and more. Within this docker-compose.yml file, 
                         we have defined an environment variable <i><b>SATYA</b></i>, which will be accessible within the 'web' service (or container) only. This is simply a demonstration, 

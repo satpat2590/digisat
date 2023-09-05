@@ -9,7 +9,7 @@ import { Blogs } from './subpages/blogs.jsx';
 import { Blog } from './subpages/blogs/blog.jsx';
 import { Pictures } from './subpages/pictures.jsx';
 
-function App() {
+export default function App() {
   return (
     <>
       <Header />
