@@ -2,23 +2,10 @@
 import React from 'react';
 import '../blog.css';
 import { blogs } from '../blogs';
-import { Code, CodeBlock, obsidian, nord, a11yDark, atomOneDark, dracula } from 'react-code-blocks';
+import { CodeBlock } from 'react-code-blocks';
 import { myCustomTheme } from '../codeblocks';
 
 const Blog2: React.FC = () => {
-  const jsx = `class HelloMessage extends React.Component {
-    handlePress = () => {
-      alert('Hello')
-    }
-    render() {
-      return (
-        <div>
-          <p>Hello {this.props.name}</p>
-          <button onClick={this.handlePress}>Say Hello</button>
-        </div>
-      );
-    }
-  }`;
 
   const docker_compose = `    version: '3'
     services:
