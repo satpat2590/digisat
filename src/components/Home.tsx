@@ -18,13 +18,12 @@ const Home: React.FC = () => {
     <div className="home-container">
       <div className="home-description">
         <p>
-          avid geek of history, language, and automation. working to improve my skills in every facet of my life!
+          i love history, language, and natural philosophy
           <br /><br />
-          i believe the wheel of innovation is spinning faster and faster, and with that, the amount of information considered to be 'general' has also expanded.
+          my current goal is to reclaim my attention
           <br /><br />
-          i hope to be on the forefront of this wheel, guiding its path.
+          i look up to monkey d. luffy as a source of inspiration/strength
           <br /><br />
-          here you'll find my journey to become a natural philosophist! enjoy :)
         </p>
         <img className="tree" src="/treeofmemory.svg" alt="Tree of Memory" />
       </div>
