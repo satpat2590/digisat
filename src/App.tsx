@@ -8,11 +8,13 @@ import Poem from './components/subpages/poems/Poem';
 import Blogs from './components/Blogs';
 import Blog from './components/subpages/blogs/Blog';
 import Pictures from './components/Pictures';
+import ScrollToTop from './components/ScrollToTop';
 import './index.css';
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
