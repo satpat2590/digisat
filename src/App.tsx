@@ -7,6 +7,7 @@ import Poetry from './components/Poetry';
 import Poem from './components/subpages/poems/Poem';
 import Blogs from './components/Blogs';
 import Blog from './components/subpages/blogs/Blog';
+import TaskDashboard from './components/TaskDashboard';
 import Pictures from './components/Pictures';
 import ScrollToTop from './components/ScrollToTop';
 import './index.css';
@@ -23,6 +24,7 @@ const App: React.FC = () => {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blogs/:id" element={<Blog />} />
         <Route path="/pictures" element={<Pictures />} />
+        <Route path="/tasks" element={<TaskDashboard />} />
       </Routes>
     </BrowserRouter>
   );

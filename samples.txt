@@ -1,0 +1,19 @@
+  const createTask = async (task: TaskCreate) => {
+    const response = await fetch(`${API_URL}/api/tasks`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(task)
+    });
+    if (response.ok) fetchTasks();
+  };
+
+
+  interface TaskCreate {
+  title: string;
+  description?: string;
+  category: 'physical' | 'mental' | 'social' | 'financial';
+  priority: number;
+  due_date?: string;
+  is_recurring: boolean;
+  recurrence_pattern?: string;
+}
