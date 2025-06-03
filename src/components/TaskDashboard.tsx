@@ -15,7 +15,7 @@ interface Task {
   created_at: string;
 }
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://tasks-api-71v5.onrender.com';
 
 const TaskDashboard: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -39,7 +39,7 @@ const TaskDashboard: React.FC = () => {
 
 
   const deleteTask = async (id: number) => {
-    await fetch(`${API_URL}/api/tasks/${id}`, { method: 'DELETE' });
+    await fetch(`${API_URL}/api/tasks/disable/${id}`, { method: 'PATCH' });
     fetchTasks();
   };
 
