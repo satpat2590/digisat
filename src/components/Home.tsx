@@ -11,6 +11,7 @@ const links: HomeLink[] = [
   { title: 'blogs', description: 'thoughts, but let loose' },
   { title: 'poems', description: 'structured thoughts about the world' },
   { title: 'pictures', description: 'collection of photos from my life travels' },
+  { title: 'tasks', description: 'personalized task manager' },
 ];
 
 const Home: React.FC = () => {
