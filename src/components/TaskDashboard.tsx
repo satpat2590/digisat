@@ -26,11 +26,15 @@ interface TaskCreate {
 }
 
 const API_URL = 'https://tasks-api-71v5.onrender.com';
+const ADMIN_PASSWORD = 'bootycheeks'; // Change this
 
 const TaskDashboard: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [password, setPassword] = useState('');
+  const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
   const [newTask, setNewTask] = useState<TaskCreate>({
     title: '',
     description: '',
@@ -52,6 +56,15 @@ const TaskDashboard: React.FC = () => {
       console.error('Failed:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const checkPassword = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === ADMIN_PASSWORD) {
+      setIsAdmin(true);
+      setShowPasswordPrompt(false);
+      setPassword('');
     }
   };
 
@@ -80,9 +93,17 @@ const TaskDashboard: React.FC = () => {
     }
   };
 
-  const deleteTask = async (id: number) => {
+
+  const completeTask = async (id: number) => {
     await fetch(`${API_URL}/api/tasks/disable/${id}`, { method: 'PATCH' });
     fetchTasks();
+  };
+
+  const deleteTask = async (id: number) => {
+    if (confirm('Permanently delete this task?')) {
+      await fetch(`${API_URL}/api/tasks/${id}`, { method: 'DELETE' });
+      fetchTasks();
+    }
   };
 
   const formatDate = (dateString: string | null) => {
@@ -104,10 +125,40 @@ const TaskDashboard: React.FC = () => {
     <div className="container">
       <div className="header">
         <h1>ACCOUNTABILITY SYSTEM</h1>
-        <button className="create-btn" onClick={() => setShowCreateForm(true)}>
-          [+] CREATE TASK
-        </button>
+        <div className="header-actions">
+          {!isAdmin && (
+            <button className="admin-btn" onClick={() => setShowPasswordPrompt(true)}>
+              [🔒] ADMIN
+            </button>
+          )}
+          {isAdmin && (
+            <>
+              <button className="create-btn" onClick={() => setShowCreateForm(true)}>
+                [+] CREATE TASK
+              </button>
+              <button className="logout-btn" onClick={() => setIsAdmin(false)}>
+                [X] LOGOUT
+              </button>
+            </>
+          )}
+        </div>
       </div>
+
+      {showPasswordPrompt && (
+        <div className="modal-overlay" onClick={() => setShowPasswordPrompt(false)}>
+          <form className="password-form" onClick={e => e.stopPropagation()} onSubmit={checkPassword}>
+            <h2>ADMIN ACCESS</h2>
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              placeholder="ENTER PASSWORD"
+              autoFocus
+            />
+            <button type="submit">ACCESS</button>
+          </form>
+        </div>
+      )}
 
       {showCreateForm && (
         <div className="modal-overlay" onClick={() => setShowCreateForm(false)}>
@@ -228,9 +279,16 @@ const TaskDashboard: React.FC = () => {
               </div>
             )}
             
-            <button className="delete-btn" onClick={() => deleteTask(task.id)}>
-              [X] DISABLE
-            </button>
+            {isAdmin && (
+              <div className="task-actions">
+                <button className="complete-btn" onClick={() => completeTask(task.id)}>
+                  [✓] COMPLETE
+                </button>
+                <button className="delete-btn" onClick={() => deleteTask(task.id)}>
+                  [X] DELETE
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>
