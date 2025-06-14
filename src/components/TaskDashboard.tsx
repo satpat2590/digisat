@@ -93,10 +93,26 @@ const TaskDashboard: React.FC = () => {
     }
   };
 
-
-  const completeTask = async (id: number) => {
-    await fetch(`${API_URL}/api/tasks/disable/${id}`, { method: 'PATCH' });
-    fetchTasks();
+  const completeTask = async (taskId: number, taskTitle: string) => {
+    const wantNotes = confirm(`Complete "${taskTitle}"?\n\nClick OK to add notes, Cancel for quick complete.`);
+    
+    let body = {};
+    if (wantNotes) {
+      const notes = prompt("Add completion notes (optional):");
+      if (notes) {
+        body = { notes };
+      }
+    }
+    
+    const response = await fetch(`${API_URL}/api/tasks/disable/${taskId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: Object.keys(body).length ? JSON.stringify(body) : undefined
+    });
+    
+    const result = await response.json();
+    alert(result.message); // Shows points earned
+    fetchTasks(); // Refresh
   };
 
   const deleteTask = async (id: number) => {
@@ -281,7 +297,7 @@ const TaskDashboard: React.FC = () => {
             
             {isAdmin && (
               <div className="task-actions">
-                <button className="complete-btn" onClick={() => completeTask(task.id)}>
+                <button className="complete-btn" onClick={() => completeTask(task.id, task.title)}>
                   [✓] COMPLETE
                 </button>
                 <button className="delete-btn" onClick={() => deleteTask(task.id)}>

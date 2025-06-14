@@ -17,3 +17,11 @@
   is_recurring: boolean;
   recurrence_pattern?: string;
 }
+
+
+
+
+  const completeTask = async (id: number) => {
+    await fetch(`${API_URL}/api/tasks/disable/${id}`, { method: 'PATCH' });
+    fetchTasks();
+  };
