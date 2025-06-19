@@ -25,6 +25,11 @@ interface TaskCreate {
   recurrence_pattern?: string;
 }
 
+interface CompletionData {
+  notes?: string;
+  quality?: number;
+}
+
 const API_URL = 'https://tasks-api-71v5.onrender.com';
 const ADMIN_PASSWORD = 'bootycheeks'; // Change this
 
@@ -93,10 +98,11 @@ const TaskDashboard: React.FC = () => {
     }
   };
 
-  const completeTask = async (taskId: number, taskTitle: string) => {
+  const completeTask = async (taskId: number, taskTitle: string): Promise<void> => {
     const wantNotes = confirm(`Complete "${taskTitle}"?\n\nClick OK to add notes, Cancel for quick complete.`);
     
-    let body = {};
+    let body: CompletionData | undefined;
+    
     if (wantNotes) {
       const notes = prompt("Add completion notes (optional):");
       if (notes) {
@@ -106,13 +112,22 @@ const TaskDashboard: React.FC = () => {
     
     const response = await fetch(`${API_URL}/api/tasks/disable/${taskId}`, {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: Object.keys(body).length ? JSON.stringify(body) : undefined
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: body ? JSON.stringify(body) : undefined
     });
     
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('Error:', error);
+      alert('Failed to complete task');
+      return;
+    }
+    
     const result = await response.json();
-    alert(result.message); // Shows points earned
-    fetchTasks(); // Refresh
+    alert(result.message || 'Task completed!');
+    await fetchTasks();
   };
 
   const deleteTask = async (id: number) => {
