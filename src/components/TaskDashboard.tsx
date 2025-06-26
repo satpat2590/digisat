@@ -30,8 +30,8 @@ interface CompletionData {
   quality?: number;
 }
 
-//const API_URL = 'https://tasks-api-71v5.onrender.com';
-const API_URL = 'http://localhost:8000'
+const API_URL = 'https://tasks-api-71v5.onrender.com';
+//const API_URL = 'http://localhost:8000'
 const ADMIN_PASSWORD = 'bootycheeks'; // Change this
 
 const TaskDashboard: React.FC = () => {
