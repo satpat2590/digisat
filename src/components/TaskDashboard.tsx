@@ -25,14 +25,8 @@ interface TaskCreate {
   recurrence_pattern?: string;
 }
 
-interface CompletionData {
-  notes?: string;
-  quality?: number;
-}
-
 const API_URL = 'https://tasks-api-71v5.onrender.com';
-//const API_URL = 'http://localhost:8000'
-const ADMIN_PASSWORD = 'bootycheeks'; // Change this
+const ADMIN_PASSWORD = 'kangz123'; // Change this
 
 const TaskDashboard: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -41,6 +35,10 @@ const TaskDashboard: React.FC = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [password, setPassword] = useState('');
   const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
+  const [showCompleteModal, setShowCompleteModal] = useState(false);
+  const [completingTask, setCompletingTask] = useState<Task | null>(null);
+  const [completionNotes, setCompletionNotes] = useState('');
+  const [notification, setNotification] = useState<{message: string, type: 'success' | 'error'} | null>(null);
   const [newTask, setNewTask] = useState<TaskCreate>({
     title: '',
     description: '',
@@ -74,6 +72,11 @@ const TaskDashboard: React.FC = () => {
     }
   };
 
+  const showNotification = (message: string, type: 'success' | 'error') => {
+    setNotification({ message, type });
+    setTimeout(() => setNotification(null), 3000);
+  };
+
   const createTask = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -99,36 +102,53 @@ const TaskDashboard: React.FC = () => {
     }
   };
 
-  const completeTask = async (taskId: number, taskTitle: string): Promise<void> => {
-    const wantNotes = confirm(`Complete "${taskTitle}"?\n\nClick OK to add notes, Cancel for quick complete.`);
+  const completeTask = async (task: Task) => {
+    setCompletingTask(task);
+    setShowCompleteModal(true);
+  };
+
+  const submitCompletion = async () => {
+    if (!completingTask) return;
     
-    let body: CompletionData | undefined;
+    let body: any = undefined;
+    if (completionNotes.trim()) {
+      body = { notes: completionNotes };
+    }
     
-    if (wantNotes) {
-      const notes = prompt("Add completion notes (optional):");
-      if (notes) {
-        body = { notes };
+    try {
+      const response = await fetch(`${API_URL}/api/tasks/disable/${completingTask.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: body ? JSON.stringify(body) : undefined
+      });
+      
+      if (!response.ok) {
+        const error = await response.text();
+        console.error('Error:', error);
+        showNotification('Failed to complete task', 'error');
+        return;
       }
+      
+      const result = await response.json();
+      showNotification(result.message || 'Task completed!', 'success');
+      
+      // Reset modal state
+      setShowCompleteModal(false);
+      setCompletingTask(null);
+      setCompletionNotes('');
+      fetchTasks();
+    } catch (error) {
+      console.error('Failed to complete task:', error);
+      showNotification('Failed to complete task', 'error');
     }
-    
-    const response = await fetch(`${API_URL}/api/tasks/disable/${taskId}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: body ? JSON.stringify(body) : undefined
-    });
-    
-    if (!response.ok) {
-      const error = await response.text();
-      console.error('Error:', error);
-      alert('Failed to complete task');
-      return;
-    }
-    
-    const result = await response.json();
-    alert(result.message || 'Task completed!');
-    await fetchTasks();
+  };
+
+  const cancelCompletion = () => {
+    setShowCompleteModal(false);
+    setCompletingTask(null);
+    setCompletionNotes('');
   };
 
   const deleteTask = async (id: number) => {
@@ -175,6 +195,12 @@ const TaskDashboard: React.FC = () => {
           )}
         </div>
       </div>
+
+      {notification && (
+        <div className={`notification ${notification.type}`}>
+          {notification.message}
+        </div>
+      )}
 
       {showPasswordPrompt && (
         <div className="modal-overlay" onClick={() => setShowPasswordPrompt(false)}>
@@ -286,6 +312,46 @@ const TaskDashboard: React.FC = () => {
         </div>
       )}
 
+      {showCompleteModal && completingTask && (
+        <div className="modal-overlay" onClick={cancelCompletion}>
+          <div className="complete-modal" onClick={e => e.stopPropagation()}>
+            <h2>COMPLETE TASK</h2>
+            <div className="task-info">
+              <p className="task-title">{completingTask.title}</p>
+              <span className={`priority priority-${completingTask.priority}`}>
+                P{completingTask.priority} - {completingTask.category.toUpperCase()}
+              </span>
+            </div>
+            
+            <div className="form-group">
+              <label>COMPLETION NOTES (OPTIONAL)</label>
+              <textarea
+                value={completionNotes}
+                onChange={e => setCompletionNotes(e.target.value)}
+                placeholder="Add any notes about this completion..."
+                rows={4}
+                autoFocus
+              />
+            </div>
+            
+            <div className="modal-actions">
+              <button className="complete-confirm-btn" onClick={submitCompletion}>
+                [✓] COMPLETE
+              </button>
+              <button className="complete-skip-btn" onClick={() => {
+                setCompletionNotes('');
+                submitCompletion();
+              }}>
+                [→] SKIP NOTES
+              </button>
+              <button className="cancel-btn" onClick={cancelCompletion}>
+                [X] CANCEL
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="task-grid">
         {tasks.map(task => (
           <div key={task.id} className="task-item">
@@ -313,7 +379,7 @@ const TaskDashboard: React.FC = () => {
             
             {isAdmin && (
               <div className="task-actions">
-                <button className="complete-btn" onClick={() => completeTask(task.id, task.title)}>
+                <button className="complete-btn" onClick={() => completeTask(task)}>
                   [✓] COMPLETE
                 </button>
                 <button className="delete-btn" onClick={() => deleteTask(task.id)}>

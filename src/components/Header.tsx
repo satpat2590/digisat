@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import './header.css';
 
 const Header: React.FC = () => {
-  const [header, setHeader] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="header">
@@ -11,26 +15,26 @@ const Header: React.FC = () => {
         <p className="header-title">Satyam Patel</p>
       </Link>
       <nav>
-        <div
-          className="nav-container"
-          style={{ transform: header ? 'translateX(-75%)' : 'translateX(100%)' }}
-        >
-          <Link to="/blogs" className="nav-link" onClick={() => setHeader(!header)}>
+        <div className={`nav-container ${isMenuOpen ? 'open' : ''}`}>
+          <Link to="/blogs" className="nav-link" onClick={closeMenu}>
             Blogs
           </Link>
-          <Link to="/poems" className="nav-link" onClick={() => setHeader(!header)}>
+          <Link to="/poems" className="nav-link" onClick={closeMenu}>
             Poetry
           </Link>
-          <Link to="/pictures" className="nav-link" onClick={() => setHeader(!header)}>
+          <Link to="/pictures" className="nav-link" onClick={closeMenu}>
             Pictures
+          </Link>
+          <Link to="/tasks" className="nav-link" onClick={closeMenu}>
+            Tasks
           </Link>
         </div>
         <button
           className="nav-button"
-          onClick={() => setHeader(!header)}
-          style={{ fontSize: header ? '20px' : '25px' }}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          style={{ fontSize: isMenuOpen ? '20px' : '25px' }}
         >
-          {header ? '✖' : '☰'}
+          {isMenuOpen ? '✖' : '☰'}
         </button>
       </nav>
     </header>

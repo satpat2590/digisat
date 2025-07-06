@@ -283,56 +283,6 @@
   font-size: 0.9rem;
 }
 
-/* Notifications */
-.notification {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 1rem 2rem;
-  border: 2px solid;
-  font-family: 'Courier New', Monaco, monospace;
-  font-weight: bold;
-  z-index: 2000;
-  animation: slideIn 0.3s ease-out, slideOut 0.3s ease-out 2.7s;
-  max-width: 400px;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideOut {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-}
-
-.notification.success {
-  background: #0a0a0a;
-  border-color: #00ff00;
-  color: #00ff00;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
-}
-
-.notification.error {
-  background: #0a0a0a;
-  border-color: #ff0000;
-  color: #ff0000;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
-}
-
 /* Completion Modal */
 .complete-modal {
   background: #0a0a0a;
