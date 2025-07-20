@@ -25,8 +25,8 @@ interface TaskCreate {
   recurrence_pattern?: string;
 }
 
-//const API_URL = 'https://tasks-api-71v5.onrender.com';
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://tasks-api-71v5.onrender.com';
+//const API_URL = 'http://localhost:8000';
 
 const ADMIN_PASSWORD = 'kangz123'; // Change this
 
