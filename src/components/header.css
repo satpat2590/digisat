@@ -72,8 +72,13 @@ nav {
     font-size: 20px;
   }
   
-
+  nav {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+  
   .header-title {
-    font-size: 25px;
+    font-size: 26px;
   }
 }

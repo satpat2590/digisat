@@ -1,0 +1,145 @@
+/* SkillTree.css */
+.skill-tree-container {
+    background: #000;
+    color: #33ff00;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: 'Courier New', monospace;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .skill-tree-container h1 {
+    text-align: center;
+    margin: 0 0 2rem 0;
+    color: #33ff00;
+    text-shadow: 0 0 20px #33ff00;
+    font-size: 2.5rem;
+  }
+  
+  .skill-tree-container svg {
+    background: #0a0a0a;
+    border: 2px solid #33ff00;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 0 30px rgba(51, 255, 0, 0.3);
+  }
+  
+  .node {
+    transition: all 0.3s ease;
+  }
+  
+  .node:hover {
+    filter: brightness(1.2);
+  }
+  
+  .node-info {
+    position: absolute;
+    top: 100px;
+    right: 20px;
+    background: #0a0a0a;
+    border: 2px solid #33ff00;
+    padding: 1.5rem;
+    min-width: 250px;
+    box-shadow: 0 0 20px rgba(51, 255, 0, 0.6);
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .node-info h3 {
+    margin: 0 0 1rem 0;
+    color: #33ff00;
+    border-bottom: 1px solid #33ff00;
+    padding-bottom: 0.5rem;
+  }
+  
+  .node-info p {
+    margin: 0.5rem 0;
+    color: #ffffff;
+  }
+  
+  .node-info .label {
+    color: #33ff00;
+    font-weight: bold;
+  }
+  
+  .node-info .path {
+    font-size: 0.85rem;
+    color: #999;
+    word-break: break-all;
+  }
+  
+  .node-info button {
+    margin-top: 1rem;
+    width: 100%;
+    background: transparent;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
+  }
+  
+  .node-info button:hover {
+    background: #ff0000;
+    color: #000;
+  }
+  
+  .controls {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .skill-tree-container {
+      padding: 1rem;
+    }
+    
+    .skill-tree-container h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .skill-tree-container svg {
+      width: 100% !important;
+      height: 500px !important;
+    }
+    
+    .node-info {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: auto;
+      border-radius: 20px 20px 0 0;
+      animation: slideUp 0.3s ease-out;
+    }
+    
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+    
+    .controls {
+      font-size: 0.75rem;
+    }
+  }
