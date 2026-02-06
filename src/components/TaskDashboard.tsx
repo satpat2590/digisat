@@ -38,7 +38,7 @@ const TaskDashboard: React.FC = () => {
   const [showCompleteModal, setShowCompleteModal] = useState(false);
   const [completingTask, setCompletingTask] = useState<Task | null>(null);
   const [completionNotes, setCompletionNotes] = useState('');
-  const [notification, setNotification] = useState<{message: string, type: 'success' | 'error'} | null>(null);
+  const [notification, setNotification] = useState<{ message: string, type: 'success' | 'error' } | null>(null);
   const [newTask, setNewTask] = useState<TaskCreate>({
     title: '',
     description: '',
@@ -85,7 +85,7 @@ const TaskDashboard: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newTask)
       });
-      
+
       if (response.ok) {
         setShowCreateForm(false);
         setNewTask({
@@ -109,12 +109,12 @@ const TaskDashboard: React.FC = () => {
 
   const submitCompletion = async () => {
     if (!completingTask) return;
-    
+
     let body: any = undefined;
     if (completionNotes.trim()) {
       body = { notes: completionNotes };
     }
-    
+
     try {
       const response = await fetch(`${API_URL}/api/tasks/disable/${completingTask.id}`, {
         method: 'PATCH',
@@ -123,17 +123,17 @@ const TaskDashboard: React.FC = () => {
         },
         body: body ? JSON.stringify(body) : undefined
       });
-      
+
       if (!response.ok) {
         const error = await response.text();
         console.error('Error:', error);
         showNotification('Failed to complete task', 'error');
         return;
       }
-      
+
       const result = await response.json();
       showNotification(result.message || 'Task completed!', 'success');
-      
+
       // Reset modal state
       setShowCompleteModal(false);
       setCompletingTask(null);
@@ -163,12 +163,24 @@ const TaskDashboard: React.FC = () => {
     const date = new Date(dateString);
     const now = new Date();
     const diffTime = date.getTime() - now.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
-    if (diffDays < 0) return `OVERDUE BY ${Math.abs(diffDays)}D`;
-    if (diffDays === 0) return 'DUE TODAY';
-    if (diffDays === 1) return 'DUE TOMORROW';
-    return `DUE IN ${diffDays}D`;
+
+    // Constants for time unit conversions
+    const MS_PER_HOUR = 1000 * 60 * 60;
+    const MS_PER_DAY = MS_PER_HOUR * 24;
+    const MS_PER_WEEK = MS_PER_DAY * 7;
+
+    const absDiff = Math.abs(diffTime);
+    const prefix = diffTime < 0 ? 'OVERDUE BY ' : 'DUE IN ';
+
+    if (diffTime >= 0 && absDiff < 1000 * 60) return 'DUE NOW';
+
+    if (absDiff < MS_PER_DAY) {
+      return `${prefix}${Math.ceil(absDiff / MS_PER_HOUR)}H`;
+    }
+    if (absDiff < MS_PER_WEEK) {
+      return `${prefix}${Math.ceil(absDiff / MS_PER_DAY)}D`;
+    }
+    return `${prefix}${Math.ceil(absDiff / MS_PER_WEEK)}W`;
   };
 
   if (loading) return <div className="container">LOADING...</div>;
@@ -198,9 +210,9 @@ const TaskDashboard: React.FC = () => {
       </div>
 
       {notification && (
-          <div className={`notification ${notification.type}`}>
-            {notification.message}
-          </div>
+        <div className={`notification ${notification.type}`}>
+          {notification.message}
+        </div>
       )}
 
       {showPasswordPrompt && (
@@ -223,13 +235,13 @@ const TaskDashboard: React.FC = () => {
         <div className="modal-overlay" onClick={() => setShowCreateForm(false)}>
           <form className="create-form" onClick={e => e.stopPropagation()} onSubmit={createTask}>
             <h2>NEW TASK</h2>
-            
+
             <div className="form-group">
               <label>TITLE*</label>
               <input
                 type="text"
                 value={newTask.title}
-                onChange={e => setNewTask({...newTask, title: e.target.value})}
+                onChange={e => setNewTask({ ...newTask, title: e.target.value })}
                 required
                 autoFocus
               />
@@ -239,7 +251,7 @@ const TaskDashboard: React.FC = () => {
               <label>DESCRIPTION</label>
               <textarea
                 value={newTask.description}
-                onChange={e => setNewTask({...newTask, description: e.target.value})}
+                onChange={e => setNewTask({ ...newTask, description: e.target.value })}
                 rows={3}
               />
             </div>
@@ -249,7 +261,7 @@ const TaskDashboard: React.FC = () => {
                 <label>CATEGORY</label>
                 <select
                   value={newTask.category}
-                  onChange={e => setNewTask({...newTask, category: e.target.value as any})}
+                  onChange={e => setNewTask({ ...newTask, category: e.target.value as any })}
                 >
                   <option value="physical">PHYSICAL</option>
                   <option value="mental">MENTAL</option>
@@ -262,7 +274,7 @@ const TaskDashboard: React.FC = () => {
                 <label>PRIORITY</label>
                 <select
                   value={newTask.priority}
-                  onChange={e => setNewTask({...newTask, priority: parseInt(e.target.value)})}
+                  onChange={e => setNewTask({ ...newTask, priority: parseInt(e.target.value) })}
                 >
                   <option value={1}>1 - LOW</option>
                   <option value={2}>2 - MEDIUM</option>
@@ -278,7 +290,7 @@ const TaskDashboard: React.FC = () => {
               <input
                 type="datetime-local"
                 value={newTask.due_date}
-                onChange={e => setNewTask({...newTask, due_date: e.target.value})}
+                onChange={e => setNewTask({ ...newTask, due_date: e.target.value })}
               />
             </div>
 
@@ -287,7 +299,7 @@ const TaskDashboard: React.FC = () => {
                 <input
                   type="checkbox"
                   checked={newTask.is_recurring}
-                  onChange={e => setNewTask({...newTask, is_recurring: e.target.checked})}
+                  onChange={e => setNewTask({ ...newTask, is_recurring: e.target.checked })}
                 />
                 RECURRING TASK
               </label>
@@ -299,7 +311,7 @@ const TaskDashboard: React.FC = () => {
                 <input
                   type="text"
                   value={newTask.recurrence_pattern}
-                  onChange={e => setNewTask({...newTask, recurrence_pattern: e.target.value})}
+                  onChange={e => setNewTask({ ...newTask, recurrence_pattern: e.target.value })}
                   placeholder="e.g., daily, weekly, monthly"
                 />
               </div>
@@ -323,7 +335,7 @@ const TaskDashboard: React.FC = () => {
                 P{completingTask.priority} - {completingTask.category.toUpperCase()}
               </span>
             </div>
-            
+
             <div className="form-group">
               <label>COMPLETION NOTES (OPTIONAL)</label>
               <textarea
@@ -334,7 +346,7 @@ const TaskDashboard: React.FC = () => {
                 autoFocus
               />
             </div>
-            
+
             <div className="modal-actions">
               <button className="complete-confirm-btn" onClick={submitCompletion}>
                 [✓] COMPLETE
@@ -360,24 +372,24 @@ const TaskDashboard: React.FC = () => {
               <h3>{task.title}</h3>
               <span className={`priority priority-${task.priority}`}>P{task.priority}</span>
             </div>
-            
+
             {task.description && (
               <p className="task-description">{task.description}</p>
             )}
-            
+
             <div className="task-meta">
               <span className="category">[{task.category.toUpperCase()}]</span>
               <span className={`due-date ${task.due_date && new Date(task.due_date) < new Date() ? 'overdue' : ''}`}>
                 {formatDate(task.due_date)}
               </span>
             </div>
-            
+
             {task.is_recurring && (
               <div className="recurring-badge">
                 ⟳ {task.recurrence_pattern?.toUpperCase()}
               </div>
             )}
-            
+
             {isAdmin && (
               <div className="task-actions">
                 <button className="complete-btn" onClick={() => completeTask(task)}>
@@ -392,12 +404,12 @@ const TaskDashboard: React.FC = () => {
         ))}
       </div>
 
-          {tasks.length === 0 && (
-            <div className="empty-state">
-              <p>NO ACTIVE TASKS</p>
-              <p className="dim">CREATE YOUR FIRST TASK TO GET STARTED</p>
-            </div>
-          )}
+      {tasks.length === 0 && (
+        <div className="empty-state">
+          <p>NO ACTIVE TASKS</p>
+          <p className="dim">CREATE YOUR FIRST TASK TO GET STARTED</p>
+        </div>
+      )}
     </div>
   );
 };
